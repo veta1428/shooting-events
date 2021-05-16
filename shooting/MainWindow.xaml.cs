@@ -20,60 +20,20 @@ namespace shooting
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        bool firstTime = true;
+    {       
         public MainWindow()
         {
-            InitializeComponent();
-
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-           
-
-        }
-
-        private void MainForm_Loaded(object sender, RoutedEventArgs e)
-        {
-            Height = 700;
-            Width = 1000;
-            
-        }
-
-        private void RadEnter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
-
-        private void RadEnter_TextInput(object sender, TextCompositionEventArgs e)
-        {
-            
+            InitializeComponent();     
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (firstTime == false)
-            {
-                ShowMistake.Content = "";
-                
-            }
-            else
-            {
-                firstTime = false;
-            }
-           
+        {          
+                showmistake.Content = " ";
         }
 
         private void CheckBounds(int radius)
         {
-            if (radius > 445 || radius < 20)
+            if (radius > 200 || radius < 20)
             {
                 throw new Exception();
             }
@@ -81,44 +41,49 @@ namespace shooting
 
         private void enter_Click(object sender, RoutedEventArgs e)
         {
+            Tuple<int, bool> info = TryToParse();
+            InfoOrNewWindow(info);              
+        }
+
+        private void InfoOrNewWindow(Tuple<int, bool> info)
+        {
+            if (info.Item2 == false)
+            {
+                showmistake.Content = "Wrong input!";
+            }
+            else
+            {
+                Shooting SecondForm = new Shooting(info.Item1);                
+                SecondForm.Show();
+                MainForm.Close();
+            }
+        }
+
+        private Tuple<int, bool> TryToParse()
+        {
             int radius = 0;
             try
             {
-                radius = Convert.ToInt32(textBox.Text);
-
-                CheckBounds(radius);
-
-                MinHeight = radius * 2 + 40;
-                MinWidth = radius * 2 + 40;
-                Target11 tard = new Target11(new Point(ActualWidth / 2, ActualWidth / 2), radius);
-                tard.Show(this, grid);
+                radius = Convert.ToInt32(textbox.Text);
+                CheckBounds(radius);    
             }
             catch
             {
-                ShowMistake.Content = "Input mistake!";
+                return Tuple.Create(0, false);
             }
-       
+
+            return Tuple.Create(radius, true);
         }
 
-        private Point CoordTransforFromGlobal(Point global)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            return new Point(global.X - ActualWidth / 2, global.Y - ActualHeight / 2);
-
+            if (e.Key == Key.Enter)
+            {
+                Tuple<int, bool> info = TryToParse();
+                InfoOrNewWindow(info);
+            }
         }
 
 
-        private void MainForm_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point shot = e.GetPosition(MainForm);
-
-            Ellipse circle = new Ellipse();
-            circle.Height = 5;
-            circle.Width = 5;
-            Point coord = CoordTransforFromGlobal(shot);
-            circle.Margin = new Thickness(2 * coord.X + 9, 2 * coord.Y + 34, 0, 0);
-            circle.Fill = Brushes.Red;
-            grid.Children.Add(circle);
-
-        }    
     }
 }

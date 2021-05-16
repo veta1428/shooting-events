@@ -5,18 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:shooting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Activated="Window_Activated" Loaded="MainForm_Loaded" MouseDown="MainForm_MouseDown">
-    <!--<Grid x:Name="grid" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto">
-        <TextBox x:Name="textBox" VerticalAlignment="Top" Height="28" Margin="0,0,0,0" TextWrapping="Wrap" TextChanged="textBox_TextChanged"/>
-        <Button x:Name="enter" Content="Enter"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Click="enter_Click" Height="28"/>
-        <Label x:Name="ShowMistake" Content="to show mistake" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsEnabled="False"  Width="205"/>
-        <Label x:Name="Rules" Content="Enter integer number from 20 to 445" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" />
-        <Label x:Name="FormName" Content="Welcome to shooting range!" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0"  FontSize="22" Width="290"/>-->
-    <Grid x:Name="grid" HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="Auto">
-        <TextBox x:Name="textBox" Height="28" Margin="-54,-94,63,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="textBox_TextChanged" RenderTransformOrigin="1.258,0.223" AllowDrop="False"/>
-        <Button x:Name="enter" Content="Enter" HorizontalAlignment="Left" Margin="76,-94,-53,0" VerticalAlignment="Top" Width="75" Click="enter_Click" Height="28"/>
-        <Label x:Name="ShowMistake" Content="to show mistake" Margin="-54,-61,-53,0" VerticalAlignment="Top" IsEnabled="False" RenderTransformOrigin="2.457,4.048" HorizontalAlignment="Left" Width="205"/>
-        <Label x:Name="Rules" Content="Enter integer number from 20 to 445" HorizontalAlignment="Left" Margin="-54,-140,-53,0" VerticalAlignment="Top"/>
-        <Label x:Name="FormName" Content="Welcome to shooting range!" HorizontalAlignment="Left" Margin="-99,-206,-93,0" VerticalAlignment="Top" FontSize="22" Width="290"/>
+        Title="MainWindow" MinHeight="300" MinWidth="500" Height="450" Width="800" KeyDown="MainForm_KeyDown">
+    <Grid x:Name="grid" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button x:Name="enter" Content="Enter" HorizontalAlignment="Left" Margin="312,168,0,0" VerticalAlignment="Top" Width="75" Click="enter_Click" Height="28"/>
+        <TextBox x:Name="textbox" HorizontalAlignment="Left" Margin="127,168,0,0" VerticalAlignment="Top" Width="100" Height="28" FontSize="16"/>
+        <Label x:Name="showmistake" Content =" " HorizontalAlignment="Left" Margin="255,216,0,0" VerticalAlignment="Top" Width="231" Height="28"/>
+        <Label x:Name="rules" Content="Enter integer from 20 to 200" HorizontalAlignment="Left" Margin="127,84,0,0" VerticalAlignment="Top" FontSize="20" />
+        <Label x:Name="mainname" Content="Welcome to the shooting range!" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,10,0,0" FontSize="30"/>
     </Grid>
 </Window>
